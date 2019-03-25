@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.zhihu.testviewdemo.sticknav.StickNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.zhihu.testviewdemo.sticknav.MixtapeVideoView
-        android:id="@+id/stick_video"
+    <com.example.zhihu.testviewdemo.sticknav.StickNavLayout
+        android:id="@+id/stick_stick_nav"
         android:layout_width="match_parent"
-        android:layout_height="250dp"></com.example.zhihu.testviewdemo.sticknav.MixtapeVideoView>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/stick_intro"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="这是提示信息"
-        android:gravity="center"
-        android:background="@color/colorAccent"/>
-    <android.support.design.widget.TabLayout
-        android:id="@+id/stick_tab"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:tabIndicatorColor="@color/colorPrimary"
-        app:tabSelectedTextColor="#0ff" />
+        <com.example.zhihu.testviewdemo.sticknav.MixtapeVideoView
+            android:id="@+id/stick_video"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"></com.example.zhihu.testviewdemo.sticknav.MixtapeVideoView>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/stick_vp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
-</com.example.zhihu.testviewdemo.sticknav.StickNavLayout>
+        <com.example.zhihu.testviewdemo.sticknav.view.MixtapeContentBottomContainer
+            android:id="@+id/stick_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.example.zhihu.testviewdemo.sticknav.view.MixtapeContentIntroView
+                android:id="@+id/stick_intro"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorPrimaryDark"
+                />
+            <android.support.design.widget.TabLayout
+                android:id="@+id/stick_tab"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:tabIndicatorColor="@color/colorPrimary"
+                app:tabSelectedTextColor="#0ff" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/stick_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.example.zhihu.testviewdemo.sticknav.view.MixtapeContentBottomContainer>
+    </com.example.zhihu.testviewdemo.sticknav.StickNavLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="scrollby"
+        android:id="@+id/scroll_by"
+        android:onClick="stickClick"/>
+</FrameLayout>

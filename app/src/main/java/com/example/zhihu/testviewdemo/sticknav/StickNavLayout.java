@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
 import com.example.zhihu.testviewdemo.R;
+import com.example.zhihu.testviewdemo.sticknav.view.MixtapeContentBottomContainer;
+import com.example.zhihu.testviewdemo.sticknav.view.MixtapeContentIntroView;
 
 /**
  * @author liuran @ Zhihu Inc.
@@ -30,10 +32,12 @@ public class StickNavLayout extends LinearLayout implements NestedScrollingParen
     private View mMid;
     private int mTopViewHeight;
     private int mMidViewHeight;
+    private int maxScrollY;
     private OverScroller mScroller;
     private ValueAnimator mOffsetAnimator;
     private int mOffset;
     private int totalY = 0;
+    private MixtapeContentBottomContainer mContainer;
 
     public boolean isEnableScroll() {
         return mEnableScroll;
@@ -43,6 +47,7 @@ public class StickNavLayout extends LinearLayout implements NestedScrollingParen
     private int mTotalHeight;
 
     String TAG = "StickNavLayout";
+
     public StickNavLayout(Context context) {
         super(context);
         init(context);
@@ -67,25 +72,34 @@ public class StickNavLayout extends LinearLayout implements NestedScrollingParen
 
     @Override
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
-        return true;
+        return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
     }
 
 
     @Override
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
-        boolean hiddenTop = dy > 0 && getScrollY() < mTopViewHeight - mOffset;
-        // ViewCompat.canScrollVertically(target, -1) = false 时表示 view 已经到达最顶部，无法下拉了
-        boolean showTop = dy < 0 && getScrollY() >= 0 && !ViewCompat.canScrollVertically(target, -1);
-        Log.i(TAG, "onNestedPreScroll: dy " + dy);
-        Log.i(TAG, "onNestedPreScroll: scrollY" + getScrollY());
-        Log.i(TAG, "onNestedPreScroll: hiddenTop " + hiddenTop);
-        Log.i(TAG, "onNestedPreScroll: showTop "+ showTop);
-        if (hiddenTop || showTop) {
-            scrollBy(0, dy);
-            consumed[1] = dy;
+        if (mEnableScroll) {
+            boolean hiddenTop = dy > 0 && getScrollY() < mTopViewHeight + mMidViewHeight - mOffset;
+            // ViewCompat.canScrollVertically(target, -1) = false 时表示 view 已经到达最顶部，无法下拉了
+            boolean showTop = dy < 0 && getScrollY() >= 0 && !ViewCompat.canScrollVertically(target, -1);
+//            Log.i(TAG, "onNestedPreScroll: dy " + dy);
+//            Log.i(TAG, "onNestedPreScroll: scrollY" + getScrollY());
+//            Log.i(TAG, "onNestedPreScroll: hiddenTop " + hiddenTop);
+//            Log.i(TAG, "onNestedPreScroll: showTop " + showTop);
+            if (hiddenTop || showTop) {
+                scrollBy(0, dy);
+                consumed[1] = dy;
+            }
+        } else {
+            boolean hiddenMid = dy > 0 && mContainer.getScrollY() < mMidViewHeight;
+            boolean showMid = dy < 0 && mContainer.getScrollY() >= 0 && !ViewCompat.canScrollVertically(target, -1);
+            if (hiddenMid || showMid) {
+                mContainer.scrollBy(0, dy);
+                consumed[1] = dy;
+            }
+//            Log.e(TAG, "onNestedPreScroll: hiddenMid" + hiddenMid);
+//            Log.e(TAG, "onNestedPreScroll: showMid" + showMid);
         }
-        totalY+=dy;
-        Log.e(TAG, "onNestedPreScroll: "+ totalY );
     }
 
 
@@ -94,7 +108,7 @@ public class StickNavLayout extends LinearLayout implements NestedScrollingParen
         //如果是recyclerView 根据判断第一个元素是哪个位置可以判断是否消耗
         //这里判断如果第一个元素的位置是大于TOP_CHILD_FLING_THRESHOLD的
         //认为已经被消耗，在animateScroll里不会对velocityY<0时做处理
-        Log.e(TAG, "onNestedFling: "+ velocityY + "consumed" + consumed );
+        Log.e(TAG, "onNestedFling: " + velocityY + "consumed" + consumed);
 //        if (velocityY < 0) {
 //            if (target instanceof RecyclerView) {
 //                final RecyclerView recyclerView = (RecyclerView) target;
@@ -110,11 +124,23 @@ public class StickNavLayout extends LinearLayout implements NestedScrollingParen
 //        } else {
 //            animateScroll(velocityY, computeDuration(velocityY), consumed);
 //        }
-        return true;
+        return false;
     }
 
     @Override
     public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
+        Log.e(TAG, "onNestedPreFling: " + velocityY);
+        if (mEnableScroll) {
+            if (getScrollY()<maxScrollY) {
+                fling((int) velocityY, maxScrollY);
+                return true;
+            }
+        }else {
+            if (mContainer.isFold()) {
+                mContainer.fling((int) velocityY);
+                return true;
+            }
+        }
         return false;
     }
 
@@ -181,6 +207,7 @@ public class StickNavLayout extends LinearLayout implements NestedScrollingParen
         mNav = findViewById(R.id.stick_tab);
         mViewPager = findViewById(R.id.stick_vp);
         mMid = findViewById(R.id.stick_intro);
+        mContainer = findViewById(R.id.stick_container);
     }
 
     @Override
@@ -194,10 +221,17 @@ public class StickNavLayout extends LinearLayout implements NestedScrollingParen
         } else {
             pagerHeight = parentHeight - mNav.getMeasuredHeight() - mTop.getMeasuredHeight();
         }
-//            mViewPager.setLayoutParams(params);
-        mTotalHeight = mTop.getMeasuredHeight() + mNav.getMeasuredHeight() + pagerHeight;
+        mTotalHeight = mTop.getMeasuredHeight() + mNav.getMeasuredHeight() + pagerHeight + mMid.getMeasuredHeight();
         setMeasuredDimension(getMeasuredWidth(), mTotalHeight);
-        mViewPager.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(pagerHeight, MeasureSpec.EXACTLY));
+
+        int linearHeight = parentHeight + mMidViewHeight;
+        mContainer.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(linearHeight, MeasureSpec.EXACTLY));
+    }
+
+    public void fling(int velocityY, int maxY)
+    {
+        mScroller.fling(0, getScrollY(), 0, velocityY, 0, 0, 0, maxY);
+        invalidate();
     }
 
     @Override
@@ -205,6 +239,7 @@ public class StickNavLayout extends LinearLayout implements NestedScrollingParen
         super.onSizeChanged(w, h, oldw, oldh);
         mTopViewHeight = mTop.getMeasuredHeight();
         mMidViewHeight = mMid.getMeasuredHeight();
+        maxScrollY = mTopViewHeight + mMidViewHeight;
     }
 
     @Override
@@ -212,8 +247,8 @@ public class StickNavLayout extends LinearLayout implements NestedScrollingParen
         if (y < 0) {
             y = 0;
         }
-        if (y > mTopViewHeight - mOffset) {
-            y = mTopViewHeight - mOffset;
+        if (y > mTopViewHeight + mMidViewHeight - mOffset) {
+            y = mTopViewHeight + mMidViewHeight - mOffset;
         }
         if (y != getScrollY()) {
             super.scrollTo(x, y);

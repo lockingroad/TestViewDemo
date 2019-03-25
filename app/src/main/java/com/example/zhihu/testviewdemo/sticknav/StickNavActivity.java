@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.example.zhihu.testviewdemo.BaseRecyclerFragment;
 import com.example.zhihu.testviewdemo.R;
@@ -23,11 +24,13 @@ public class StickNavActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private SticktPagerAdapter mAdapter;
     private TabLayout mTabLayout;
+    private StickNavLayout mStickNavLayout;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stick_nav);
         mMixtapeVideoView = findViewById(R.id.stick_video);
+        mStickNavLayout = findViewById(R.id.stick_stick_nav);
 //        mMidView = findViewById(R.id.stick_mid);
         mViewPager = findViewById(R.id.stick_vp);
         mTabLayout = findViewById(R.id.stick_tab);
@@ -38,5 +41,9 @@ public class StickNavActivity extends AppCompatActivity {
         mAdapter = new SticktPagerAdapter(getSupportFragmentManager(), pageItems);
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(mAdapter);
+    }
+
+    public void stickClick(View view) {
+        mStickNavLayout.scrollBy(0,10);
     }
 }
