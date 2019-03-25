@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    tools:parentTag="android.widget.RelativeLayout">
+
+    <TextView
+        android:background="#ff0"
+        android:id="@+id/font_download_start"
+        android:layout_width="44dp"
+        android:layout_height="24dp"
+        android:gravity="center"
+        android:text="下载"
+        android:textColor="#f00"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/font_download_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_zheb_checkmark"
+        android:tint="#000"
+        android:visibility="invisible" />
+
+</merge>
