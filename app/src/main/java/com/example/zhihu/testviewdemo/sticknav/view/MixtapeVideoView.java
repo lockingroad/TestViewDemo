@@ -1,4 +1,4 @@
-package com.example.zhihu.testviewdemo.sticknav;
+package com.example.zhihu.testviewdemo.sticknav.view;
 
 import android.content.Context;
 import android.graphics.Color;

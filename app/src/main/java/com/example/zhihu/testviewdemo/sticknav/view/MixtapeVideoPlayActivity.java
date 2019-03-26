@@ -1,4 +1,4 @@
-package com.example.zhihu.testviewdemo.sticknav;
+package com.example.zhihu.testviewdemo.sticknav.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +9,10 @@ import android.view.View;
 
 import com.example.zhihu.testviewdemo.BaseRecyclerFragment;
 import com.example.zhihu.testviewdemo.R;
-import com.example.zhihu.testviewdemo.temp.StaticFragment;
+import com.example.zhihu.testviewdemo.sticknav.PageItem;
+import com.example.zhihu.testviewdemo.sticknav.SticktPagerAdapter;
+import com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoView;
+import com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoContentView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +21,19 @@ import java.util.List;
  * @author liuran @ Zhihu Inc.
  * @since 03-21-2019
  */
-public class StickNavActivity extends AppCompatActivity {
+public class MixtapeVideoPlayActivity extends AppCompatActivity {
     private MixtapeVideoView mMixtapeVideoView;
 //    private View mMidView;
     private ViewPager mViewPager;
     private SticktPagerAdapter mAdapter;
     private TabLayout mTabLayout;
-    private StickNavLayout mStickNavLayout;
+    private MixtapeVideoContentView mMixtapeVideoContentView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stick_nav);
         mMixtapeVideoView = findViewById(R.id.stick_video);
-        mStickNavLayout = findViewById(R.id.stick_stick_nav);
+        mMixtapeVideoContentView = findViewById(R.id.stick_stick_nav);
 //        mMidView = findViewById(R.id.stick_mid);
         mViewPager = findViewById(R.id.stick_vp);
         mTabLayout = findViewById(R.id.stick_tab);
@@ -44,6 +47,6 @@ public class StickNavActivity extends AppCompatActivity {
     }
 
     public void stickClick(View view) {
-        mStickNavLayout.scrollBy(0,10);
+        mMixtapeVideoContentView.scrollBy(0,10);
     }
 }

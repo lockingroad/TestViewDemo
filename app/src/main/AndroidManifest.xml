@@ -27,7 +27,7 @@
 
         <activity android:name=".recycler.RecyclerADActivity" />
 
-        <activity android:name=".sticknav.StickNavActivity" />
+        <activity android:name=".sticknav.view.MixtapeVideoPlayActivity" />
 
         <activity android:name=".draghelper.DragActivity" />
 

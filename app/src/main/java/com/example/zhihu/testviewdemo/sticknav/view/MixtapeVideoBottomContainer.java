@@ -12,11 +12,11 @@ import com.example.zhihu.testviewdemo.R;
  * @author liuran @ Zhihu Inc.
  * @since 03-25-2019
  */
-public class MixtapeContentBottomContainer extends LinearLayout {
+public class MixtapeVideoBottomContainer extends LinearLayout {
     private View mIntroView;
     private int mIntroViewHeight;
     private OverScroller mScroller;
-    public MixtapeContentBottomContainer(Context context) {
+    public MixtapeVideoBottomContainer(Context context) {
         super(context);
         init(context);
     }
@@ -25,12 +25,12 @@ public class MixtapeContentBottomContainer extends LinearLayout {
         mScroller = new  OverScroller(context);
     }
 
-    public MixtapeContentBottomContainer(Context context, AttributeSet attrs) {
+    public MixtapeVideoBottomContainer(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public MixtapeContentBottomContainer(Context context, AttributeSet attrs,
+    public MixtapeVideoBottomContainer(Context context, AttributeSet attrs,
             int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);

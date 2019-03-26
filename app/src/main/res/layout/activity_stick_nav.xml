@@ -5,23 +5,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.zhihu.testviewdemo.sticknav.StickNavLayout
+    <com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoContentView
         android:id="@+id/stick_stick_nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.example.zhihu.testviewdemo.sticknav.MixtapeVideoView
+        <com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoView
             android:id="@+id/stick_video"
             android:layout_width="match_parent"
-            android:layout_height="250dp"></com.example.zhihu.testviewdemo.sticknav.MixtapeVideoView>
+            android:layout_height="250dp"></com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoView>
 
-        <com.example.zhihu.testviewdemo.sticknav.view.MixtapeContentBottomContainer
+        <com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoBottomContainer
             android:id="@+id/stick_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <com.example.zhihu.testviewdemo.sticknav.view.MixtapeContentIntroView
+            <com.example.zhihu.testviewdemo.sticknav.view.MixtapeVediotIntroView
                 android:id="@+id/stick_intro"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
@@ -38,8 +38,8 @@
                 android:id="@+id/stick_vp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-        </com.example.zhihu.testviewdemo.sticknav.view.MixtapeContentBottomContainer>
-    </com.example.zhihu.testviewdemo.sticknav.StickNavLayout>
+        </com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoBottomContainer>
+    </com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoContentView>
 
 
     <Button

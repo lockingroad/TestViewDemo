@@ -17,7 +17,7 @@ import com.example.zhihu.testviewdemo.R;
  * @author liuran @ Zhihu Inc.
  * @since 03-25-2019
  */
-public class MixtapeContentIntroView extends FrameLayout implements NestedScrollingChild {
+public class MixtapeVediotIntroView extends FrameLayout implements NestedScrollingChild {
 
     private NestedScrollingChildHelper mNestedScrollingChildHelper;
     private final int[] offset = new int[2]; //偏移量
@@ -26,19 +26,19 @@ public class MixtapeContentIntroView extends FrameLayout implements NestedScroll
 
     String TAG = "MixtapeContentIntroView";
 
-    public MixtapeContentIntroView(Context context) {
+    public MixtapeVediotIntroView(Context context) {
         super(context);
         init(context);
     }
 
 
-    public MixtapeContentIntroView(Context context,
+    public MixtapeVediotIntroView(Context context,
             AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public MixtapeContentIntroView(Context context,
+    public MixtapeVediotIntroView(Context context,
             AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);

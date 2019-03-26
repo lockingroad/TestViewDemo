@@ -4,12 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.zhihu.testviewdemo.BaseRecyclerFragment;
 import com.example.zhihu.testviewdemo.R;
-import com.example.zhihu.testviewdemo.temp.StaticFragment;
+import com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoView;
 
 import java.util.ArrayList;
 import java.util.List;

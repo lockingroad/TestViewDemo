@@ -15,7 +15,7 @@ import com.example.zhihu.testviewdemo.ebookdownload.EBookDownloadSimpleButton;
 import com.example.zhihu.testviewdemo.recycler.RecyclerADActivity;
 import com.example.zhihu.testviewdemo.recycler.RecyclerActivity2;
 import com.example.zhihu.testviewdemo.scroller.ScrollerActivity;
-import com.example.zhihu.testviewdemo.sticknav.StickNavActivity;
+import com.example.zhihu.testviewdemo.sticknav.view.MixtapeVideoPlayActivity;
 import com.example.zhihu.testviewdemo.sticknav.StickNavActivity2;
 
 import java.util.concurrent.TimeUnit;
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.stick_nav:
-                startActivity(StickNavActivity.class);
+                startActivity(MixtapeVideoPlayActivity.class);
                 break;
             case R.id.stick_nav1:
                 startActivity(StickNavActivity2.class);
