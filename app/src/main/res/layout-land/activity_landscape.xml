@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#f00">
+
+    <Button
+        android:id="@+id/portrait_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="竖屏"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/landscape_btn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="横屏"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/landscape_btn"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.example.zhihu.testviewdemo.landscape.TestFrameLayout
+        android:id="@+id/container"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </com.example.zhihu.testviewdemo.landscape.TestFrameLayout>
+
+</android.support.constraint.ConstraintLayout>

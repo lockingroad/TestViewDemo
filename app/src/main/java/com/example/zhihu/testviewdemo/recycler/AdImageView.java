@@ -78,5 +78,15 @@ public class AdImageView extends AppCompatImageView {
 
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Log.e(TAG, "onDetachedFromWindow: " );
+    }
 
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Log.e(TAG, "onAttachedToWindow: ");
+    }
 }

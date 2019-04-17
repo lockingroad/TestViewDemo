@@ -9,9 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.zhihu.testviewdemo.animation.AnimationActivity;
 import com.example.zhihu.testviewdemo.dialog.DialogActivity;
 import com.example.zhihu.testviewdemo.draghelper.DragActivity;
 import com.example.zhihu.testviewdemo.ebookdownload.EBookDownloadSimpleButton;
+import com.example.zhihu.testviewdemo.landscape.LandScapeActivity;
 import com.example.zhihu.testviewdemo.recycler.RecyclerADActivity;
 import com.example.zhihu.testviewdemo.recycler.RecyclerActivity2;
 import com.example.zhihu.testviewdemo.scroller.ScrollerActivity;
@@ -146,6 +148,14 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.scroller:
                 startActivity(ScrollerActivity.class);
+                break;
+
+            case R.id.switch_screen:
+                startActivity(LandScapeActivity.class);
+                break;
+
+            case R.id.animation:
+                startActivity(AnimationActivity.class);
                 break;
 
         }

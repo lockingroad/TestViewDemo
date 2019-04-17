@@ -159,6 +159,21 @@
             android:onClick="doClick"
             android:text="scroller"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/switch_screen"
+            android:onClick="doClick"
+            android:text="screen"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/animation"
+            android:onClick="doClick"
+            android:text="animation"/>
+
+
     </android.support.v7.widget.LinearLayoutCompat>
 
 
